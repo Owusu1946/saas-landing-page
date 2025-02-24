@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --muted: 240 10% 3.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+
+    --border: 271 91% 65%;
+    --input: 271 91% 65%;
+
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --ring: 271 91% 65%;
+
+    --radius: 0.5rem;
+
+    --neon-green: #00E699;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom neon text effect */
+.neon-text {
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px rgb(139, 92, 246),
+    0 0 82px rgb(139, 92, 246),
+    0 0 92px rgb(139, 92, 246),
+    0 0 102px rgb(139, 92, 246),
+    0 0 151px rgb(139, 92, 246);
+}
+
+/* Gradient animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+.dropdown-menu {
+  @apply absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-neutral-900 
+  border border-neutral-800 rounded-lg shadow-lg overflow-hidden invisible 
+  group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200;
+}
+
