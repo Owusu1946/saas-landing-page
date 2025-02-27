@@ -9,11 +9,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react"
 
 export default function Header() {
   const [stars, setStars] = useState<number | null>(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [expandedSections, setExpandedSections] = useState({
+    product: false,
+    solutions: false,
+    company: false
+  })
   
   // Fetch GitHub stars
   useEffect(() => {
@@ -39,6 +44,13 @@ export default function Header() {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const toggleSection = (section: 'product' | 'solutions' | 'company') => {
+    setExpandedSections({
+      ...expandedSections,
+      [section]: !expandedSections[section]
+    })
   }
 
   return (
@@ -101,26 +113,6 @@ export default function Header() {
           <Link href="/pricing" className="text-sm text-neutral-300 hover:text-white">
             Pricing
           </Link>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm text-neutral-300 hover:text-white focus:outline-none">
-              Company
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-neutral-900 border-neutral-800 text-white">
-              <DropdownMenuItem className="hover:bg-neutral-800 focus:bg-neutral-800">
-                <Link href="/company/about" className="w-full">About Us</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="hover:bg-neutral-800 focus:bg-neutral-800">
-                <Link href="/company/blog" className="w-full">Blog</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="hover:bg-neutral-800 focus:bg-neutral-800">
-                <Link href="/company/careers" className="w-full">Careers</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -133,7 +125,6 @@ export default function Header() {
             onClick={(e) => {
               e.preventDefault()
               window.open('https://github.com/Owusu1946/saas-landing-page/stargazers', '_blank')
-              // Open star action in a new tab
               window.open('https://github.com/Owusu1946/saas-landing-page', '_blank')
             }}
           >
@@ -157,8 +148,8 @@ export default function Header() {
           <Button 
             variant="ghost" 
             size="icon" 
+            className="lg:hidden text-white" 
             onClick={toggleMobileMenu}
-            className="lg:hidden text-white"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>
@@ -171,60 +162,84 @@ export default function Header() {
           <div className="container py-4 flex flex-col gap-4">
             {/* Product Section */}
             <div className="border-b border-neutral-800 pb-4">
-              <h3 className="text-white font-medium mb-2">Product</h3>
-              <div className="flex flex-col gap-2 pl-2">
-                <Link href="/product/features" className="text-neutral-400 hover:text-white py-1">
-                  Features
-                </Link>
-                <Link href="/product/integrations" className="text-neutral-400 hover:text-white py-1">
-                  Integrations
-                </Link>
-                <Link href="/product/changelog" className="text-neutral-400 hover:text-white py-1">
-                  Changelog
-                </Link>
-              </div>
+              <button 
+                onClick={() => toggleSection('product')}
+                className="flex items-center justify-between w-full text-white font-medium py-2"
+              >
+                <span>Product</span>
+                {expandedSections.product ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {expandedSections.product && (
+                <div className="flex flex-col gap-2 pl-2 mt-2">
+                  <Link href="/product/features" className="text-neutral-400 hover:text-white py-1">
+                    Features
+                  </Link>
+                  <Link href="/product/integrations" className="text-neutral-400 hover:text-white py-1">
+                    Integrations
+                  </Link>
+                  <Link href="/product/changelog" className="text-neutral-400 hover:text-white py-1">
+                    Changelog
+                  </Link>
+                </div>
+              )}
             </div>
             
             {/* Solutions Section */}
             <div className="border-b border-neutral-800 pb-4">
-              <h3 className="text-white font-medium mb-2">Solutions</h3>
-              <div className="flex flex-col gap-2 pl-2">
-                <Link href="/solutions/startups" className="text-neutral-400 hover:text-white py-1">
-                  For Startups
-                </Link>
-                <Link href="/solutions/enterprise" className="text-neutral-400 hover:text-white py-1">
-                  For Enterprise
-                </Link>
-                <Link href="/solutions/case-studies" className="text-neutral-400 hover:text-white py-1">
-                  Case Studies
-                </Link>
-              </div>
+              <button 
+                onClick={() => toggleSection('solutions')}
+                className="flex items-center justify-between w-full text-white font-medium py-2"
+              >
+                <span>Solutions</span>
+                {expandedSections.solutions ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {expandedSections.solutions && (
+                <div className="flex flex-col gap-2 pl-2 mt-2">
+                  <Link href="/solutions/startups" className="text-neutral-400 hover:text-white py-1">
+                    For Startups
+                  </Link>
+                  <Link href="/solutions/enterprise" className="text-neutral-400 hover:text-white py-1">
+                    For Enterprise
+                  </Link>
+                  <Link href="/solutions/case-studies" className="text-neutral-400 hover:text-white py-1">
+                    Case Studies
+                  </Link>
+                </div>
+              )}
             </div>
             
             {/* Direct Links */}
-            <div className="border-b border-neutral-800 pb-4">
-              <Link href="/docs" className="block text-white py-2">
+            <div className="border-b border-neutral-800 pb-4 flex flex-col">
+              <Link href="/docs" className="text-white py-2">
                 Docs
               </Link>
-              <Link href="/pricing" className="block text-white py-2">
+              <Link href="/pricing" className="text-white py-2">
                 Pricing
               </Link>
             </div>
             
             {/* Company Section */}
             <div className="border-b border-neutral-800 pb-4">
-              <h3 className="text-white font-medium mb-2">Company</h3>
-              <div className="flex flex-col gap-2 pl-2">
-                <Link href="/company/about" className="text-neutral-400 hover:text-white py-1">
-                  About Us
-                </Link>
-                <Link href="/company/blog" className="text-neutral-400 hover:text-white py-1">
-                  Blog
-                </Link>
-                <Link href="/company/careers" className="text-neutral-400 hover:text-white py-1">
-                  Careers
-                </Link>
-              </div>
+              <button 
+                onClick={() => toggleSection('company')}
+                className="flex items-center justify-between w-full text-white font-medium py-2"
+              >
+                <span>Company</span>
+                {expandedSections.company ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {expandedSections.company && (
+                <div className="flex flex-col gap-2 pl-2 mt-2">
+                  <Link href="/company/about" className="text-neutral-400 hover:text-white py-1">
+                    About Us
+                  </Link>
+                  <Link href="/company/blog" className="text-neutral-400 hover:text-white py-1">
+                    Blog
+                  </Link>
+                  <Link href="/company/careers" className="text-neutral-400 hover:text-white py-1">
+                    Careers
+                  </Link>
+                </div>
+              )}
             </div>
             
             {/* GitHub and Auth buttons on mobile */}

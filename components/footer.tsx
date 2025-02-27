@@ -6,29 +6,29 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#00E699]/10 bg-black py-16">
+    <footer className="border-t border-[#00E699]/10 bg-black py-10 sm:py-16">
       <div className="container px-4 md:px-6 max-w-5xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-8 grid-cols-2 md:grid-cols-2 lg:grid-cols-4"
         >
-          <div className="space-y-4 text-center lg:text-left">
+          <div className="space-y-4 text-center lg:text-left col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 justify-center lg:justify-start">
               <Zap className="h-6 w-6 text-[#00E699]" />
               <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00E699] to-[#00E699]/50">
                 Saas Pro
               </span>
             </div>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-neutral-400 max-w-xs mx-auto lg:mx-0">
               Serverless PostgreSQL for modern applications.
             </p>
           </div>
           
-          <div className="space-y-4 text-center lg:text-left">
+          <div className="space-y-3 text-center lg:text-left">
             <h4 className="text-sm font-medium text-white">Product</h4>
-            <ul className="space-y-3 text-sm text-neutral-400">
+            <ul className="space-y-2 text-sm text-neutral-400">
               <li>
                 <Link href="#features" className="hover:text-[#00E699] transition-colors">
                   Features
@@ -47,9 +47,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-4 text-center lg:text-left">
+          <div className="space-y-3 text-center lg:text-left">
             <h4 className="text-sm font-medium text-white">Company</h4>
-            <ul className="space-y-3 text-sm text-neutral-400">
+            <ul className="space-y-2 text-sm text-neutral-400">
               <li>
                 <Link href="#about" className="hover:text-[#00E699] transition-colors">
                   About
@@ -68,9 +68,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="space-y-4 text-center lg:text-left">
+          <div className="space-y-3 text-center lg:text-left">
             <h4 className="text-sm font-medium text-white">Legal</h4>
-            <ul className="space-y-3 text-sm text-neutral-400">
+            <ul className="space-y-2 text-sm text-neutral-400">
               <li>
                 <Link href="#privacy" className="hover:text-[#00E699] transition-colors">
                   Privacy
@@ -95,7 +95,7 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mt-12 border-t border-[#00E699]/10 pt-8 text-center text-sm text-neutral-400"
+          className="mt-8 sm:mt-12 border-t border-[#00E699]/10 pt-6 sm:pt-8 text-center text-xs sm:text-sm text-neutral-400"
         >
           © {new Date().getFullYear()} <Link href="https://github.com/Owusu1946" target="_blank" className="hover:text-[#00E699] transition-colors">Owusu1946</Link>. All rights reserved.
         </motion.div>
