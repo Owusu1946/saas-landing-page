@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button"
 import NeonGrid from "./neon-grid"
+import { Badge } from "@/components/ui/badge"
+import { motion } from "framer-motion"
+import { Sparkles, ArrowRight } from "lucide-react"
 
 export default function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden">
+    <section className="relative pt-23 pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-black">
         <NeonGrid />
       </div>
@@ -13,8 +16,31 @@ export default function HeroSection() {
       {/* Radial gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50" />
       
-      <section className="relative pt-32 pb-20">
+      <section className="relative pt-24 pb-20">
         <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8 flex justify-center"
+          >
+            <Badge 
+              variant="outline" 
+              className="border-[#00E699]/30 text-[#00E699] px-4 py-1.5 text-sm flex items-center gap-2 hover:border-[#00E699]/60 transition-colors group cursor-pointer"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Now with 2x faster query performance</span>
+              <motion.div
+                className="ml-1"
+                initial={{ x: 0 }}
+                whileHover={{ x: 3 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                <ArrowRight className="h-3.5 w-3.5" />
+              </motion.div>
+            </Badge>
+          </motion.div>
+          
           <h1 className="text-[64px] leading-tight font-bold tracking-tight mb-6 relative">
             <span className="text-white">Serverless </span>
             <span className="text-neutral-500">Postgres</span>
@@ -38,25 +64,10 @@ export default function HeroSection() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white/20 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-lg backdrop-blur-sm"
+              className="border-white/20 text-black hover:bg-white/5 hover:text-black px-8 py-6 text-lg rounded-lg backdrop-blur-sm"
             >
               Schedule Demo
             </Button>
-          </div>
-
-          <div className="flex items-center justify-center gap-24">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-1">100k+</div>
-              <div className="text-neutral-500">Developers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-1">16.2k</div>
-              <div className="text-neutral-500">GitHub Stars</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white mb-1">99.9%</div>
-              <div className="text-neutral-500">Uptime</div>
-            </div>
           </div>
         </div>
       </section>

@@ -8,6 +8,7 @@ import DatabaseVisualSection from "./components/database-visual-section"
 import PerformanceSection from "./components/performance-section"
 import PricingSection from "./components/pricing-section"
 import Footer from "./components/footer"
+import TestimonialsSection from "@/components/testimonials-section"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -21,16 +22,19 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
-      <Header />
-      <main className="relative min-h-screen bg-black">
-        <HeroSection />
-        <FeaturesSection />
-        <DatabaseVisualSection />
-        <PerformanceSection />
-        <PricingSection />
-      </main>
-      <Footer />
+    <div className="fixed inset-0 overflow-y-auto overflow-x-hidden bg-black">
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="relative flex-grow bg-black">
+          <HeroSection />
+          <FeaturesSection />
+          <DatabaseVisualSection />
+          <PerformanceSection />
+          <TestimonialsSection />
+          <PricingSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

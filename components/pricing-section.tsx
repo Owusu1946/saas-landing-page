@@ -77,7 +77,7 @@ export default function PricingSection() {
                 Popular
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Pro</h3>
-              <p className="text-4xl font-bold text-white mb-4">$29</p>
+              <p className="text-4xl font-bold text-white mb-4">₵199</p>
               <ul className="space-y-2 text-neutral-400 mb-8">
                 <li>10GB Storage</li>
                 <li>Dedicated Resources</li>
@@ -109,7 +109,7 @@ export default function PricingSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="w-full border-white/20 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-lg"
+                className="w-full border-white/20 text-black hover:bg-white/5 px-8 py-6 text-lg rounded-lg"
               >
                 Contact Sales
               </Button>

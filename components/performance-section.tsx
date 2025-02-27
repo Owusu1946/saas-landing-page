@@ -127,7 +127,7 @@ LIMIT 10;`,
               <Button 
                 size="lg"
                 variant="outline" 
-                className="border-white/20 text-white hover:bg-white/5 px-8 py-6 text-lg rounded-lg"
+                className="border-white/20 text-black hover:bg-white/5 hover:text-white px-8 py-6 text-lg rounded-lg"
               >
                 Read Documentation
               </Button>
