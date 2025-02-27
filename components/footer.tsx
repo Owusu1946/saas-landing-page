@@ -97,7 +97,7 @@ export default function Footer() {
           transition={{ delay: 0.2 }}
           className="mt-12 border-t border-[#00E699]/10 pt-8 text-center text-sm text-neutral-400"
         >
-          © {new Date().getFullYear()} Owusu1946. All rights reserved.
+          © {new Date().getFullYear()} <Link href="https://github.com/Owusu1946" target="_blank" className="hover:text-[#00E699] transition-colors">Owusu1946</Link>. All rights reserved.
         </motion.div>
       </div>
     </footer>
